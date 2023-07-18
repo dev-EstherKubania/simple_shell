@@ -33,11 +33,13 @@ char *_getenv(char *env_var)
 void _env(void)
 {
 	int i = 0;
+	size_t len;
 
 	while (environ[i])
 	{
-		printf("%s\n", environ[i]);
-		i++;
+	len = _strlen(environ[i]);
+	write(STDOUT_FILENO, environ[i], len);
+	write(STDOUT_FILENO, "\n", 1);
+	i++;
 	}
 }
-
