@@ -4,7 +4,7 @@
  *
  * Return: Always 0 (Success)
  */
-int main(void)
+int custom_hello(void)
 {
 	const char message[] = "Hello, world!\n";
 
