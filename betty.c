@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * main - Entry point of the program
+ * custom_hello - Entry point of the program
  *
  * Return: Always 0 (Success)
  */
