@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * empty_line - checks if exists a empty line
+ * empty_line - checks if an empty line exists
  * @buff: line
- * Return: 0 or 1 (int)
+ * Return: 0 or 1
  */
 
 int empty_line(char *buff)

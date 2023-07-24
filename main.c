@@ -13,7 +13,7 @@ int main(void)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "($)", 3);
+			write(STDOUT_FILENO, "($) ", 4);
 		buff_size = getline(&buff, &read_size, stdin);
 	if (buff_size == -1 || feof(stdin))
 	{
