@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 
 /*PROTOTYPES*/
+int custom_hello(void);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *search_path(char *command);
