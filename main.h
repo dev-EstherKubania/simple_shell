@@ -18,7 +18,7 @@ char **_split(char *str, char *sep);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
 char *_getenv(char *env_var);
-void *_calloc(unsigned int nmemb, unsigned int size);
+void *_calloc(unsigned int n, unsigned int size);
 void _env(void);
 int execute(char **args);
 int empty_line(char *buff);
