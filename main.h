@@ -1,5 +1,5 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef MAIN_H
+#define MAIN_H
 
 /*LIBRARIES*/
 #include <stdio.h>
@@ -19,7 +19,7 @@ char **_split(char *str, char *sep);
 char *_strcat(char *dest, const char *src);
 size_t _strlen(const char *s);
 char *_getenv(char *env_var);
-void *_calloc(unsigned int nmemb, unsigned int size);
+void *_calloc(unsigned int n, unsigned int size);
 void _env(void);
 int execute(char **args);
 int empty_line(char *buff);

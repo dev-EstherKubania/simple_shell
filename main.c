@@ -17,6 +17,10 @@ int main(void)
 		buff_size = getline(&buff, &read_size, stdin);
 	if (buff_size == -1 || feof(stdin))
 	{
+<<<<<<< HEAD
+=======
+		/*_putchar('\n');*/
+>>>>>>> 02f88d47de02234ee8c46ae07b184c4bd451ccb1
 	break;
 	}
 	if (buff_size == 1 && buff[0] == '\n')
