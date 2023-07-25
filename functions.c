@@ -26,7 +26,7 @@ int _strcmp(char *s1, char *s2)
  * @src: ponter
  * Return: @dest
  */
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *dest, const char *src)
 {
 	char *c = dest;
 
@@ -77,7 +77,7 @@ char **_split(char *str, char *sep)
  * Return: @dest
  */
 
-char *_strcat(char *dest, char *src)
+char *_strcat(char *dest, const char *src)
 {
 	int a, b;
 
@@ -100,9 +100,9 @@ char *_strcat(char *dest, char *src)
  *
  */
 
-int _strlen(char *s)
+size_t _strlen(const char *s)
 {
-	int i = 0;
+	size_t i = 0;
 
 	while (s[i] != '\0')
 		i++;

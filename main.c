@@ -17,7 +17,6 @@ int main(void)
 		buff_size = getline(&buff, &read_size, stdin);
 	if (buff_size == -1 || feof(stdin))
 	{
-	printf("\n");
 	break;
 	}
 	if (buff_size == 1 && buff[0] == '\n')
