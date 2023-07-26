@@ -105,8 +105,9 @@ int execute_command(char **args)
 		else
 		{
 		_fputs(program_name, stdout);
-		_fputs(": Command not found: ", stdout);
+		_fputs(": 1: ", stdout);
 		_fputs(args[0], stdout);
+		_fputs(": not found", stdout);
 		_fputc('\n', stdout);
 	}
 	return (0);
