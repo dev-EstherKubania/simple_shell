@@ -1,45 +1,32 @@
 #include "main.h"
 
 /**
- * _getenv - get env variables
- * @env_var: env variable
- * Return: env variable result, its content
+ * builtin_exit - Exit the shell
+ *
+ * Return: 0 to exit the shell
  */
-
-char *_getenv(char *env_var)
+int builtin_exit(void)
 {
-	int i = 0, j;
-	int status;
-
-	while (environ[i])
-	{
-		status = 1;
-
-		for (j = 0; environ[i][j] != '='; j++)
-		{
-			if (environ[i][j] != env_var[j])
-				status = 0;
-		}
-		if (status == 1)
-			break;
-		i++;
-	}
-	return (&environ[i][j + 1]);
+        return (0);
 }
 
 /**
- * _env - prints environment
-*/
-void _env(void)
+ * builtin_env - Print the environment variables
+ *
+ * @env: Environment variables
+ *
+ * Return: Always returns 1
+ */
+int builtin_env(char **env)
 {
-	int i = 0;
-	size_t len;
+        int i;
 
-	while (environ[i])
-	{
-	len = _strlen(environ[i]);
-	write(STDOUT_FILENO, environ[i], len);
-	write(STDOUT_FILENO, "\n", 1);
-	i++;
-	}
+        for (i = 0; env[i]; i++)
+        {
+        write(STDOUT_FILENO, env[i], _strlen(env[i]));
+        write(STDOUT_FILENO, "\n", 1);
+        }
+
+        return (1);
 }
+
