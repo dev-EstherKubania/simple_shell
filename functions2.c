@@ -1,23 +1,22 @@
 #include "main.h"
+
 /**
- * _strncpy - copies a string
- * @dest: destination buffer
- * @src: source string
- * @n: maximum number of characters to copy
+ * _strchr - locate character string
+ * @str: string to be searched
+ * @c: character to be located
  *
- * Return: pointer to destination buffer
+ * Return: pointer to first occurence of character in str
+ * otherwise NULL if not found
  */
-char *_strncpy(char *dest, const char *src, size_t n)
+char *_strchr(const char *str, int c)
 {
-	size_t i;
-
-	for (i = 0; i < n && src[i] != '\0'; i++)
-		dest[i] = src[i];
-
-	for (; i < n; i++)
-		dest[i] = '\0';
-
-	return (dest);
+	while (*str != '\0')
+	{
+		if (*str == c)
+			return ((char *)str);
+		str++;
+	}
+	return (NULL);
 }
 /**
  * _strdup - duplicate a string
@@ -42,20 +41,64 @@ char *_strdup(const char *str)
 	return (duplicate);
 }
 /**
- * _strchr - locate character string
- * @str: string to be searched
- * @c: character to be located
- *
- * Return: pointer to first occurence of character in str
- * otherwise NULL if not found
+ * _strcmp - compares two strings
+ * @str1: char type
+ * @str2: char type
+ * Return: integer value
  */
-char *_strchr(const char *str, int c)
+int _strcmp(const char *str1, const char *str2)
 {
-	while (*str != '\0')
+	while (*str1 && (*str1 == *str2))
 	{
-		if (*str == c)
-			return ((char *)str);
-		str++;
+	str1++;
+	str2++;
 	}
-	return (NULL);
+	return (*(unsigned char *)str1 - *(unsigned char *)str2);
 }
+
+/**
+ * _atoi - converts a string to an integer
+ * @str: string to convert
+ *
+ * Return: result
+ */
+int _atoi(const char *str)
+{
+	int sign = 1;
+	int result = 0;
+	int i = 0;
+
+	while (str[i] == ' ')
+		i++;
+
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (isdigit(str[i]))
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
+}
+/**
+ * _strncmp - compare at most n characters of two strings
+ * @s1: first string
+ * @s2: second string
+ * @n: max number of chars to compare
+ *
+ * Return: integer...
+ */
+int _strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t i;
+
+	for (i = 0; i < n && s1[i] && s2[i] && s1[i] == s2[i]; i++)
+		;
+
+	return (i == n ? 0 : (s1[i] - s2[i]));
+}
+
