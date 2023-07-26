@@ -83,25 +83,27 @@ int execute_command(char **args)
 
 		if (child_pid == 0)
 		{
-			if (execve(command_path, args, NULL) == -1)
+			if (execve(command_path, args, environ) == -1)
 			{
 				perror("execve");
-				exit(EXIT_FAILURE);
+				exit(-1);
 			}
 		}
 		else if (child_pid < 0)
 		{
 			perror("fork");
-			exit(EXIT_FAILURE);
+			exit(-1);
 		}
 		else
 		{
 		wait(&status);
-		}
-		{
 		free(command_path);
+		if (WIFEXITED(status))
+			status = WEXITSTATUS(status);
+		if (!isatty(STDIN_FILENO))
+			return (status);
 		}
-		}
+		}	
 		else
 		{
 		_fputs(program_name, stdout);
