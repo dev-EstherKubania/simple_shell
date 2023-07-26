@@ -6,9 +6,9 @@
  * Return: 0 to exit the shell
  */
 int builtin_exit(void)
-{
-        return (0);
-}
+	{
+		return (0);
+	}
 
 /**
  * builtin_env - Print the environment variables
@@ -19,14 +19,14 @@ int builtin_exit(void)
  */
 int builtin_env(char **env)
 {
-        int i;
+	int i;
 
-        for (i = 0; env[i]; i++)
-        {
-        write(STDOUT_FILENO, env[i], _strlen(env[i]));
-        write(STDOUT_FILENO, "\n", 1);
-        }
+	for (i = 0; env[i]; i++)
+	{
+	write(STDOUT_FILENO, env[i], _strlen(env[i]));
+	write(STDOUT_FILENO, "\n", 1);
+	}
 
-        return (1);
+	return (1);
 }
 
