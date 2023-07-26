@@ -103,7 +103,7 @@ int execute_command(char **args)
 		if (!isatty(STDIN_FILENO))
 			return (status);
 		}
-		}	
+		}
 		else
 		{
 		_fputs(program_name, stdout);
