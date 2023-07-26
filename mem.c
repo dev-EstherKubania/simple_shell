@@ -1,28 +1,47 @@
 #include "main.h"
 
 /**
- * _calloc - function that allocates memory for an array, using malloc
- * @n: array
- * @size: size
- * Return: pointer or NULL
+ * parse_command - parse the command string into tokens
+ * @command: command string to parse
+ *
+ * Return: array of pointers to the token
  */
-
-void *_calloc(unsigned int n, unsigned int size)
+char **parse_command(char *command)
 {
-	unsigned int index = 0;
-	char *ptr = NULL;
+	char **tokens = malloc(sizeof(char *) * MAX_TOKENS);
+	char *token;
+	int i = 0;
 
-	if (n == 0 || size == 0)
+	if (!tokens)
+	{
+		perror("Failed to allocate memory");
 		return (NULL);
+	}
 
-	ptr = malloc(n * size);
+	token = strtok(command, DELIMITER);
 
-	if (ptr == NULL)
-		return (NULL);
+	while (token != NULL)
+	{
+		tokens[i] = token;
+		i++;
+		token = strtok(NULL, DELIMITER);
+	}
 
-	for (; index < (n * size); index++)
-		ptr[index] = 0;
-
-	return (ptr);
+	tokens[i] = NULL;
+	return (tokens);
 }
+/**
+ * free_tokens - frees the memory allocated for the tokens array
+ * @tokens: array of pointers to the tokens
+ */
+void free_tokens(char **tokens)
+{
+	int i = 0;
 
+	while (tokens[i] != NULL)
+	{
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens[i]);
+}
