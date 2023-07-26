@@ -1,47 +1,46 @@
 #include "main.h"
+
 /**
- * main - open shell, project base
- * Return: int
+ * main - Entry point of the program
+ * @argc: Number of command-line arguments
+ * @argv: Array of command-line arguments
+ * @envp: Array of environment variables
+ * Return: Always 0 (success)
  */
-int main(void)
+int main(int argc, char **argv, char **envp)
 {
-	char *buff = NULL, **args;
-	size_t read_size = 0;
-	ssize_t buff_size = 0;
-	int exit_status = 0;
+	char *line = NULL, **args;
+	int exit_status, status;
+	(void)argc;
+	(void)envp;
+	program_name = argv[0];
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "($) ", 4);
-		buff_size = getline(&buff, &read_size, stdin);
-	if (buff_size == -1 || feof(stdin))
-	{
-	break;
+		print_prompt();
+		if (prompt(&line) == -1)
+			exit(0);
+
+		args = split_line(line);
+		if (args == NULL || args[0] == NULL)
+			continue;
+
+		if (_strcmp(args[0], "exit") == 0)
+		{
+			exit_status = (args[1] != NULL) ? _atoi(args[1]) : 0;
+			free(line);
+			free_args(args);
+			exit(exit_status);
+		}
+
+		status = execute(args);
+		free_args(args);
+		free(line);
+		line = NULL;
+
+		if (status != EXIT_SUCCESS)
+			break;
 	}
-	if (buff_size == 1 && buff[0] == '\n')
-	continue;
-	buff[buff_size - 1] = '\0';
-	if (_strcmp("exit", buff) == 0)
-	break;
-	if (_strcmp("env", buff) == 0)
-	{
-	_env();
-	continue;
-	}
-	if (empty_line(buff) == 1)
-	{
-	exit_status = 0;
-	continue;
-	}
-	args = _split(buff, " ");
-	args[0] = search_path(args[0]);
-	if (args[0] != NULL)
-	exit_status = execute(args);
-	else
-	perror("Error");
-	free(args);
-	}
-	free(buff);
-	return (exit_status);
+
+	return (0);
 }
