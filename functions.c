@@ -1,112 +1,85 @@
 #include "main.h"
-
 /**
- * _strcmp - compares two strings
- * @s1: pointer 1
- * @s2: pointer 2
- * Return: result
- */
-
-int _strcmp(char *s1, char *s2)
-{
-	while (*s1 && *s2)
-	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-
-		s1++;
-		s2++;
-	}
-	return (0);
-}
-
-/**
- * _strcpy - function that copies the string pointed to by src
- * @dest: pointer
- * @src: ponter
- * Return: @dest
- */
-char *_strcpy(char *dest, const char *src)
-{
-	char *c = dest;
-
-	while (*src != '\0')
-	{
-		*dest = *src;
-		dest++;
-		src++;
-	}
-	*dest = '\0';
-	return (c);
-}
-
-/**
- * _split - split string
- * @str: string
- * @sep: separator
- * Return: divided path
- */
-
-char **_split(char *str, char *sep)
-{
-	char *aux, **split_str;
-	int i = 0;
-
-	aux = strtok(str, sep);
-	split_str = (char **)_calloc(100, sizeof(char *));
-
-	if (!split_str)
-	{
-		free(split_str);
-		return (NULL);
-	}
-
-	while (aux)
-	{
-		split_str[i] = aux;
-		aux = strtok(NULL, sep);
-		i++;
-	}
-	return (split_str);
-}
-
-/**
- * _strcat - function that concatenates two strings
- * @dest: string
- * @src: string
- * Return: @dest
- */
-
-char *_strcat(char *dest, const char *src)
-{
-	int a, b;
-
-	for (a = 0; dest[a] != '\0'; a += 1)
-	{}
-
-	for (b = 0; src[b] != '\0'; b += 1)
-	{
-		dest[a] = src[b];
-		a++;
-	}
-	dest[a] = '\0';
-	return (dest);
-}
-
-/**
- * _strlen - string length
- * @s: string
- * Return: result
+ * _putchar - writes the character c to stdout
+ * @c: character to print
  *
+ * Return: 1 on success, otherwise -1
  */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
 
+/**
+ * _strlen - Calculate the length of a string
+ *
+ * @s: Pointer to the string to calculate the length of
+ *
+ * Return: Length of the string
+ */
 size_t _strlen(const char *s)
 {
-	size_t i = 0;
+	size_t len = 0;
 
-	while (s[i] != '\0')
-		i++;
+	while (s[len] != '\0')
+		len++;
 
-	return (i);
+	return (len);
+}
+/**
+ * free_args - Free the memory allocated for an array of strings
+ * @args: Array of strings to free
+ *
+ * Return: void
+ */
+void free_args(char **args)
+{
+	char **temp = args;
+
+	while (*temp)
+	{
+		free(*temp);
+		temp++;
+	}
+	free(args);
+}
+/**
+ * _strncpy - copies a string
+ * @dest: destination buffer
+ * @src: source string
+ * @n: maximum number of characters to copy
+ *
+ * Return: pointer to destination buffer
+ */
+char *_strncpy(char *dest, const char *src, size_t n)
+{
+	size_t i;
+
+	for (i = 0; i < n && src[i] != '\0'; i++)
+		dest[i] = src[i];
+
+	for (; i < n; i++)
+		dest[i] = '\0';
+
+	return (dest);
+}
+/**
+ * _strcpy - copies a string
+ * @destination: string destination
+ * @source: source string
+ *
+ * Return: destination
+ */
+char *_strcpy(char *destination, const char *source)
+{
+	char *ptr = destination;
+
+	while (*source != '\0')
+	{
+		*ptr++ = *source++;
+	}
+	ptr = '\0';
+
+	return (destination);
 }
 
