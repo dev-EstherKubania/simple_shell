@@ -2,11 +2,11 @@
 #define MAX_COMMAND_LENGTH 100
 #define MAX_PATH_LENGTH 200
 /**
- * search_path - Get the full path of a command using the PATH variable
+ * get_command_path - Get the full path of a command using the PATH variable
  * @command: Command to find
  * Return: Full path of the command if found, NULL otherwise
  */
-char *search_path(char *command)
+char *get_command_path(char *command)
 {
 	char *path, *dir, *full_path, *token;
 
@@ -48,7 +48,6 @@ char *search_path(char *command)
 	}
 	return (NULL);
 }
-
 /**
  * build_command_path - Build the full path of a command
  * @directory: Directory to prepend to the command
